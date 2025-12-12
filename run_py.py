@@ -15,12 +15,7 @@ def usage():
     )
     sys.exit(1)
 
-
-if len(sys.argv) in {0, 1, 4}:
-    # 0 args or 1 arg → invalid
-    if len(sys.argv) != 3 and len(sys.argv) != 4:
-        usage()
-else:
+if len(sys.argv) not in {3, 4}:
     usage()
 
 script_dir = Path(__file__).resolve().parent

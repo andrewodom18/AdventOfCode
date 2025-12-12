@@ -1,4 +1,3 @@
-// Run with: node script.js data/input.csv
 const fs = require("fs");
 
 // ---------- Zero-count helpers ----------
