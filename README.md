@@ -10,6 +10,7 @@ AdventOfCode/
 |-- run_js.mjs              # Node helper to run JS solutions
 |-- run_py.py               # Python helper to run Py solutions
 |-- run_kt.sh               # Kotlin helper to compile/run KT solutions
+|
 |-- Year/
 |   \-- Month/
 |       |-- Day01/
@@ -20,6 +21,7 @@ AdventOfCode/
 |       |   \-- solution/main.{js,py,kt}
 |       |-- ...
 |       \-- Day03/...
+|
 \-- web/
     |-- server.js           # Local HTTP server that exposes/run solutions
     \-- public/
@@ -51,7 +53,7 @@ Month names are case-insensitive; the day argument can be `1` or `01`.
 ### Run by explicit paths
 
 - JavaScript: `node run_js.mjs 2025/December/Day01/solution/main.js 2025/December/Day01/data/input.csv`
-- Python: `python run_py.py 2025/December/Day01/solution/main.py 2025/December/Day01/data/input.csv`
+- Python: `python3 run_py.py 2025/December/Day01/solution/main.py 2025/December/Day01/data/input.csv`
 - Kotlin: `./run_kt.sh 2025/December/Day01/solution/main.kt 2025/December/Day01/data/input.csv`
 
 Notes:
