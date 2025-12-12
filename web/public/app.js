@@ -182,10 +182,10 @@ function renderResult(lang, payload) {
   if (showAnswers) {
     html += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">`;
     if (highlights.part1) {
-      html += `<div class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-100"><strong class="block text-xs uppercase tracking-wide text-slate-400 mb-1">Part 1</strong>${escapeHtml(highlights.part1)}</div>`;
+      html += `<div class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-100 break-all"><strong class="block text-xs uppercase tracking-wide text-slate-400 mb-1">Part 1</strong>${escapeHtml(highlights.part1)}</div>`;
     }
     if (highlights.part2) {
-      html += `<div class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-100"><strong class="block text-xs uppercase tracking-wide text-slate-400 mb-1">Part 2</strong>${escapeHtml(highlights.part2)}</div>`;
+      html += `<div class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-100 break-all"><strong class="block text-xs uppercase tracking-wide text-slate-400 mb-1">Part 2</strong>${escapeHtml(highlights.part2)}</div>`;
     }
     if (highlights.processingMs != null) {
       html += `<div class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-100"><strong class="block text-xs uppercase tracking-wide text-slate-400 mb-1">Processing</strong>${formatMs(highlights.processingMs)}</div>`;
