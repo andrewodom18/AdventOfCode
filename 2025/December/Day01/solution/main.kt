@@ -10,17 +10,32 @@ fun main(args: Array<String>) {
 
         require(inputFile.exists()) { "Input file not found: $filePath" }
 
-        var dial = 50
-        var part1ZeroCount = 0L
-        var part2ZeroCount = 0L
-
-        val processingTime = measureTimeMillis {
-            inputFile.bufferedReader().forEachLine { line ->
-                if (line.isEmpty()) return@forEachLine
-
+        val instructions = inputFile.readLines()
+            .filter { it.isNotBlank() }
+            .map { line ->
                 val direction = line[0]
                 val distance = line.substring(1).toInt()
+                when (direction) {
+                    'L', 'R' -> direction to distance
+                    else -> error("Invalid direction: $direction")
+                }
+            }
 
+        var part1ZeroCount = 0L
+        val part1Time = measureTimeMillis {
+            var dial = 50
+            for ((direction, distance) in instructions) {
+                dial = if (direction == 'L') dial - distance else dial + distance
+                dial %= 100
+                if (dial < 0) dial += 100
+                if (dial == 0) part1ZeroCount++
+            }
+        }
+
+        var part2ZeroCount = 0L
+        val part2Time = measureTimeMillis {
+            var dial = 50
+            for ((direction, distance) in instructions) {
                 val hits = when (direction) {
                     'L' -> countZeroClicksLeft(dial, distance)
                     'R' -> countZeroClicksRight(dial, distance)
@@ -29,26 +44,24 @@ fun main(args: Array<String>) {
 
                 part2ZeroCount += hits
 
-                dial = if (direction == 'L')
-                    dial - distance
-                else
-                    dial + distance
-
+                dial = if (direction == 'L') dial - distance else dial + distance
                 dial %= 100
                 if (dial < 0) dial += 100
-
-                if (dial == 0) part1ZeroCount++
             }
         }
+
+        val processingTime = part1Time + part2Time
         println("\n========= Answers =========")
-        println("Part 1 password: $part1ZeroCount")
-        println("Part 2 password: $part2ZeroCount")
+        println("Part 1: $part1ZeroCount")
+        println("Part 2: $part2ZeroCount")
 
         println("\n========= Timings =========")
-        println("Processing time: ${processingTime} ms")
+        println("Part 1 Time: ${part1Time} ms")
+        println("Part 2 Time: ${part2Time} ms")
+        println("Processing Time: ${processingTime} ms")
     }
 
-    println("Total runtime: ${totalTime} ms\n")
+    println("Total Runtime: ${totalTime} ms\n")
 }
 
 // Counts how many times the dial lands on 0 when moving right

@@ -174,7 +174,6 @@ function renderResult(lang, payload) {
       <span class="${success ? BADGE_CLASSES.success : BADGE_CLASSES.error}">
         ${success ? "Completed" : `Exited (${exitCode})`}
       </span>
-      <span class="text-xs text-slate-400">${formatMs(durationMs) || ""}</span>
     </div>
   `;
 

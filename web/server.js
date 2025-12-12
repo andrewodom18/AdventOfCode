@@ -238,6 +238,8 @@ function runSolution(language, dayMeta) {
 
 function parseOutputForHighlights(stdout) {
   const lines = stdout.split(/\r?\n/);
+  let part1TimeMs = null;
+  let part2TimeMs = null;
   const highlights = {
     part1: null,
     part2: null,
@@ -246,17 +248,37 @@ function parseOutputForHighlights(stdout) {
   };
 
   for (const line of lines) {
-    const part1 = line.match(/part\s*1[^:]*:\s*(.+)$/i);
-    if (part1) highlights.part1 = part1[1].trim();
+    const label = (line.split(":")[0] || "").toLowerCase();
 
-    const part2 = line.match(/part\s*2[^:]*:\s*(.+)$/i);
-    if (part2) highlights.part2 = part2[1].trim();
+    if (!highlights.part1) {
+      const part1 = line.match(/^\s*part\s*1[^:]*:\s*(.+)$/i);
+      if (part1 && !label.includes("time")) {
+        highlights.part1 = part1[1].trim();
+      }
+    }
+
+    if (!highlights.part2) {
+      const part2 = line.match(/^\s*part\s*2[^:]*:\s*(.+)$/i);
+      if (part2 && !label.includes("time")) {
+        highlights.part2 = part2[1].trim();
+      }
+    }
 
     const processing = line.match(/processing\s+time:\s*([0-9]+(?:\.[0-9]+)?)\s*ms/i);
     if (processing) highlights.processingMs = Number(processing[1]);
 
+    const p1Time = line.match(/part\s*1\s*time[^:]*:\s*([0-9]+(?:\.[0-9]+)?)\s*ms?/i);
+    if (p1Time && part1TimeMs == null) part1TimeMs = Number(p1Time[1]);
+
+    const p2Time = line.match(/part\s*2\s*time[^:]*:\s*([0-9]+(?:\.[0-9]+)?)\s*ms?/i);
+    if (p2Time && part2TimeMs == null) part2TimeMs = Number(p2Time[1]);
+
     const total = line.match(/total\s+runtime:\s*([0-9]+(?:\.[0-9]+)?)\s*ms/i);
     if (total) highlights.totalMs = Number(total[1]);
+  }
+
+  if (highlights.processingMs == null && part1TimeMs != null && part2TimeMs != null) {
+    highlights.processingMs = Number(part1TimeMs) + Number(part2TimeMs);
   }
 
   return highlights;

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import sys
 import os
 import subprocess
@@ -9,9 +8,9 @@ def usage():
     print(
         "Usage:\n"
         "  # Direct paths:\n"
-        "  python run_py.py path/to/solution/main.py path/to/data/input.csv\n\n"
+        "  python3 run_py.py path/to/solution/main.py path/to/data/input.csv\n\n"
         "  # By year/month/day:\n"
-        "  python run_py.py <year> <month> <day>"
+        "  python3 run_py.py <year> <month> <day>"
     )
     sys.exit(1)
 
@@ -70,8 +69,8 @@ except subprocess.CalledProcessError as e:
     print(f"Error while running {py_abs}", file=sys.stderr)
     sys.exit(e.returncode)
 
-# Terminal Command: python run_py.py <year> <month> <day>. (I.e., python run_py.py 2025 December 1)
+# Terminal Command: python3 run_py.py <year> <month> <day>. (I.e., python run_py.py 2025 December 1)
 #
 # OR
 #
-# Terminal Command: python run_py.py year/month/day/solution/main.py year/month/day/data/input.csv
+# Terminal Command: python3 run_py.py year/month/day/solution/main.py year/month/day/data/input.csv

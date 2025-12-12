@@ -93,8 +93,8 @@ fun main(args: Array<String>) {
         println("Part 2: $part2Answer")
 
         println("\n========= Timings =========")
-        println("Part 1 Time:     ${part1Time} ms")
-        println("Part 2 Time:     ${part2Time} ms")
+        println("Part 1 Time: ${part1Time} ms")
+        println("Part 2 Time: ${part2Time} ms")
     }
 
     println("Total Runtime: ${totalTime} ms\n")
