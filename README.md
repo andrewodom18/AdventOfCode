@@ -44,17 +44,17 @@ You can point the helpers either at explicit file paths or at a date (year, mont
 
 ### Run by year/month/day (auto-resolves paths)
 
-- JavaScript: `node run_js.mjs 2025 December 1`
-- Python: `python3 run_py.py 2025 December 1`
-- Kotlin: `./run_kt.sh 2025 December 1`
+- JavaScript: `node run_js.mjs <year> <month> <day>`
+- Python: `python3 run_py.py <year> <month> <day>`
+- Kotlin: `./run_kt.sh <year> <month> <day>`
 
 Month names are case-insensitive; the day argument can be `1` or `01`.
 
 ### Run by explicit paths
 
-- JavaScript: `node run_js.mjs 2025/December/Day01/solution/main.js 2025/December/Day01/data/input.csv`
-- Python: `python3 run_py.py 2025/December/Day01/solution/main.py 2025/December/Day01/data/input.csv`
-- Kotlin: `./run_kt.sh 2025/December/Day01/solution/main.kt 2025/December/Day01/data/input.csv`
+- JavaScript: `node run_js.mjs 2025/December/Day01/solution/main.js <year>/<month>/<day>/data/input.csv`
+- Python: `python3 run_py.py 2025/December/Day01/solution/main.py <year>/<month>/<day>/data/input.csv`
+- Kotlin: `./run_kt.sh 2025/December/Day01/solution/main.kt <year>/<month>/<day>/data/input.csv`
 
 Notes:
 
